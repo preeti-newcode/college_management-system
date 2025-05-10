@@ -1,3 +1,5 @@
+📘 College Management System – SQL Database Project
+
 This project involves the creation and population of a structured relational database designed to manage core aspects of a college hostel system. The database is implemented using MySQL and includes four interrelated tables: student, room, complaints, and fee. The design emphasizes data integrity, normalization, and real-world use cases such as room allocation, complaint tracking, and fee management.
 
 🛠️ Key Features
