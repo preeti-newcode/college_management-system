@@ -1,0 +1,76 @@
+Create database collegemanagement;
+
+Use collegemanagement;
+
+Create table student(
+	studId int primary key, 
+name varchar(50) not null, 
+course varchar(10) not null, 
+department varchar(25) not null, 
+phoneNo bigint(20) unique, 
+address varchar(80), 
+roomId int  , 
+foreign key (roomId) references room (roomId)
+);   
+
+Insert into student (studId ,name ,course ,department ,phoneNo ,address) values
+(   101 , ‘Arav Mehta’  , ‘bca’   , ‘computer science’, 9632587412, ‘block a, room 204’ ),
+(   102 , ‘Priya Sharma’, ‘bba’   , ‘business admin’  ,9874563210, ‘block b, room 105’ ),
+(   103 , ‘Rohan Singh’ , ‘b.tech’ , ‘mechanical’  ,1123654789, ‘block c,room 309’ ),
+(   104 , ‘Sneha Kapoor’ , ‘b.sc’  , ‘physics’  ,7845691231, ‘block a, room 110’ ),
+(   105 , ‘Vikas Nair’ , ‘bca’   , ‘computer science’ ,5879456321, ‘block b, room 202’ );
+
+Create table room(
+	roomId int primary key,
+	floor int not null,
+	capacity int not null,
+	roomType varchar(8),
+	availability varchar(20),
+	charge int,
+	bedNo int
+);
+Insert into room values
+(1,1,2, ‘NON AC’, ‘available’,3000,2),
+(2,2,3, ‘AC’, ‘full’, 4500, 3),
+(3,3,1, ‘NON AC’, ‘available’, 2500, 1),
+(4, 1, 2, ‘AC’, ‘full’, 4500, 2);
+
+
+CREATE TABLE complaints (
+  	  complaintId int(11) primary key,
+  studId int(11),
+  reletedTo enum( ‘bullying’, ‘hostel’, ‘water’, ‘electricity’, ‘teachers’ , ‘other’),
+  description varchar(200),
+  status varchar(15) DEFAULT pending,
+  foreign key (studId) references student(studId) 	
+); 
+
+
+insert into complaints values
+(1,102, ‘hostel’, ‘ac not working’, ‘pending’),
+(2,103, ‘water’, ‘water leakage’, ‘resolved’ ),
+(3,105, ‘hostel’ , ‘no light in bathroom’ , ‘pending’);
+
+
+CREATE TABLE fee (
+  id int(11)primary key,
+  studId int(11) ,
+  totalFee int(11) NOT NULL,
+  paid int(11) ,
+  status varchar(5) ,
+  foreign key (studId) references student(studId)
+);
+
+Insert into fee values
+(1,101,3000,3000, ‘paid’),
+(2,102,4500,2500, ‘due’),
+(3,103,2500,2500, ‘paid’),
+(4,104,3000,3000, ‘paid’),
+(5,105,4500,4000, ‘due’);
+
+INSERT INTO student (roomid) VALUES 
+(1), 
+(1), 
+(2), 
+(2), 
+(3);
